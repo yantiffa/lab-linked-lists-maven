@@ -8,7 +8,7 @@ import java.util.Random;
 import java.util.function.Predicate;
 
 /**
- * Some simple experiments with SimpleLists
+ * Some simple experiments with SimpleLists.
  *
  * @author Samuel A. Rebelsky
  * @author Your Name Here
@@ -68,7 +68,7 @@ public class SimpleListExperiments {
    * @param strings
    *   The strings to add.
    */
-  static void addExpt(PrintWriter pen, SimpleList<String> lst, 
+  static void addExpt(PrintWriter pen, SimpleList<String> lst,
       String[] strings) throws Exception {
     ListIterator<String> lit = lst.listIterator();
 
@@ -80,7 +80,7 @@ public class SimpleListExperiments {
   } // addExpt(PrintWriter, SimpleList<String>, String[])
 
   /**
-   * Add a variety of elements, without describing what happens
+   * Add a variety of elements, without describing what happens.
    *
    * @param pen
    *   How to print.
@@ -203,7 +203,7 @@ public class SimpleListExperiments {
    * @param lst
    *   The list we're modifying.
    */
-  static void experiment1(PrintWriter pen, SimpleList<String> lst) 
+  static void experiment1(PrintWriter pen, SimpleList<String> lst)
       throws Exception {
     pen.println("Experiment 1: Add a variety of elements.");
     addExpt(pen, lst, new String[] {"A", "B", "C"});
@@ -219,7 +219,7 @@ public class SimpleListExperiments {
    * @param lst
    *   The list we're modifying.
    */
-  static void experiment2(PrintWriter pen, SimpleList<String> lst) 
+  static void experiment2(PrintWriter pen, SimpleList<String> lst)
        throws Exception {
     pen.println("Experiment 2: Remove alternating elements, moving forward.");
     final Counter counter = new Counter();
@@ -236,7 +236,7 @@ public class SimpleListExperiments {
    * @param lst
    *   The list we're modifying.
    */
-  static void experiment3(PrintWriter pen, SimpleList<String> lst) 
+  static void experiment3(PrintWriter pen, SimpleList<String> lst)
       throws Exception {
     pen.println("Experiment 3: Remove random elements, moving forward.");
     addStrings(pen, lst, new String[] {"A", "B", "C", "D", "E", "F", "G"});
@@ -251,8 +251,10 @@ public class SimpleListExperiments {
    *   Where to print a log of what happens.
    * @param lst
    *   The list we're modifying.
+   * @param n
+   *   How many elements to remove.
    */
-  static void experiment4(PrintWriter pen, SimpleList<String> lst, int n) 
+  static void experiment4(PrintWriter pen, SimpleList<String> lst, int n)
       throws Exception {
     pen.println("Experiment 4: Removing elements with a random walk.");
     addStrings(pen, lst, new String[] {"A", "B", "C", "D", "E", "F", "G"});
@@ -270,7 +272,13 @@ public class SimpleListExperiments {
  * A simple counter.
  */
 class Counter {
+  /** The current value of the counter. */
   int val = 0;
+  /**
+   * Get the value of the counter, thereby incrementing the counter.
+   *
+   * @return the current value of the counter.
+   */
   int get() {
     return val++;
   } // get()

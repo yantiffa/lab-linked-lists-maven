@@ -1,7 +1,6 @@
 package edu.grinnell.csc207.experiments;
 
 import edu.grinnell.csc207.util.SimpleDLL;
-import edu.grinnell.csc207.util.SimpleList;
 
 import java.io.PrintWriter;
 

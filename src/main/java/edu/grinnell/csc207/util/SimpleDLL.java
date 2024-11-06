@@ -9,6 +9,13 @@ import java.util.NoSuchElementException;
  * Simple doubly-linked lists.
  *
  * These do *not* (yet) support the Fail Fast policy.
+ *
+ * @author Samuel A. Rebelsky
+ * @author Your Name Here
+ * @author Your Name Here
+ *
+ * @param <T>
+ *   The type of elements stored in the list.
  */
 public class SimpleDLL<T> implements SimpleList<T> {
   // +--------+------------------------------------------------------------
@@ -16,7 +23,7 @@ public class SimpleDLL<T> implements SimpleList<T> {
   // +--------+
 
   /**
-   * The front of the list
+   * The front of the list.
    */
   Node2<T> front;
 
@@ -41,10 +48,20 @@ public class SimpleDLL<T> implements SimpleList<T> {
   // | Iterators |
   // +-----------+
 
+  /**
+   * Get an iterator for the list.
+   *
+   * @return an iterator for the list.
+   */
   public Iterator<T> iterator() {
     return listIterator();
   } // iterator()
 
+  /**
+   * Get a list iterator for the list.
+   *
+   * @return a list iterator for the list.
+   */
   public ListIterator<T> listIterator() {
     return new ListIterator<T>() {
       // +--------+--------------------------------------------------------
@@ -76,18 +93,16 @@ public class SimpleDLL<T> implements SimpleList<T> {
       // +---------+
 
       public void add(T val) throws UnsupportedOperationException {
-        // Special case: The list is empty)
         if (SimpleDLL.this.front == null) {
+          // Special case: The list is empty.
           SimpleDLL.this.front = new Node2<T>(val);
           this.prev = SimpleDLL.this.front;
-        } // empty list
-        // Special case: At the front of a list
-        else if (prev == null) {
+        } else if (prev == null) {
+          // Special case: At the front of a list
           this.prev = this.next.insertBefore(val);
           SimpleDLL.this.front = this.prev;
-        } // front of list
-        // Normal case
-        else {
+        } else {
+          // Normal case
           this.prev = this.prev.insertAfter(val);
         } // normal case
 
@@ -112,7 +127,7 @@ public class SimpleDLL<T> implements SimpleList<T> {
 
       public T next() {
         if (!this.hasNext()) {
-         throw new NoSuchElementException();
+          throw new NoSuchElementException();
         } // if
         // Identify the node to update
         this.update = this.next;
@@ -134,9 +149,9 @@ public class SimpleDLL<T> implements SimpleList<T> {
       } // prevIndex
 
       public T previous() throws NoSuchElementException {
-        if (!this.hasPrevious())
-          throw new NoSuchElementException();
-        // STUB
+        if (!this.hasPrevious()) {
+          throw new NoSuchElementException(); // STUB
+        } // if
         return null;
       } // previous()
 

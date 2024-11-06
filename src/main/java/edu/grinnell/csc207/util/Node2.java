@@ -2,13 +2,19 @@ package edu.grinnell.csc207.util;
 
 /**
  * Nodes for doubly-linked structures.
+ *
+ * @author Samuel A. Rebelsky.
+ *
+ * @param <T>
+ *   The type of value stored in the nodes (and structures built
+ *   from the nodes).
  */
 public class Node2<T> {
   // +--------+------------------------------------------------------
   // | Fields |
   // +--------+
 
-  /** 
+  /**
    * The previous node.
    */
   Node2<T> prev;
@@ -27,47 +33,72 @@ public class Node2<T> {
   // | Constructors |
   // +--------------+
 
-  /** 
+  /**
    * Create a new node.
+   *
+   * @param prevNode
+   *   The previous node in the list (or null, if it's the front of the list).
+   * @param val
+   *   The value to be stored in the node.
+   * @param nextNode
+   *   The next node in the list (or null, if it's the end of the list).
    */
-  public Node2(Node2<T> prev, T value, Node2<T> next) {
-    this.prev = prev;
-    this.value = value;
-    this.next = next;
+  public Node2(Node2<T> prevNode, T val, Node2<T> nextNode) {
+    this.prev = prevNode;
+    this.value = val;
+    this.next = nextNode;
   } // Node2(Node2<T>, T, Node2<T>)
 
   /**
-   * Create a new node with no previous link.  (E.g., the front
-   * of some kinds of lists.)
+   * Create a new node with no previous link (e.g., the front
+   * of some kinds of lists).
+   *
+   * @param val
+   *   The value to be stored in the node.
+   * @param nextNode
+   *   The next node in the list (or null, if it's the end of the list).
    */
-  public Node2(T value, Node2<T> next) {
-    this(null, value, next);
+  public Node2(T val, Node2<T> nextNode) {
+    this(null, val, nextNode);
   } // Node2(T, Node2<T>)
 
   /**
-   * Create a new node with no next link.  (Included primarily
-   * for symmetry.)
+   * Create a new node with no next link (e.g., if it's at the end of
+   * the list). Included primarily for symmetry.
+   *
+   * @param prevNode
+   *   The previous node in the list (or null, if it's the front of the list).
+   * @param val
+   *   The value to be stored in the node.
    */
-  public Node2(Node2<T> prev, T value) {
-    this(prev, value, null);
+  public Node2(Node2<T> prevNode, T val) {
+    this(prevNode, val, null);
   } // Node2(Node2<T>, T)
 
   /**
    * Create a new node with no links.
+   *
+   * @param val
+   *   The value to be stored in the node.
    */
-   public Node2(T value) {
-     this(null, value, null);
-   } // Node2(T)
+  public Node2(T val) {
+    this(null, val, null);
+  } // Node2(T)
 
   // +---------+-----------------------------------------------------
   // | Methods |
   // +---------+
 
   /**
-   * Insert a new value after this node.  Returns the new node.
+   * Insert a new value after this node.
+   *
+   * @param val
+   *   The value to insert.
+   * @return
+   *   The newly created node that contains the value.
    */
-  Node2<T> insertAfter(T value) {
-    Node2<T> tmp = new Node2<T>(this, value, this.next);
+  Node2<T> insertAfter(T val) {
+    Node2<T> tmp = new Node2<T>(this, val, this.next);
     if (this.next != null) {
       this.next.prev = tmp;
     } // if
@@ -76,10 +107,15 @@ public class Node2<T> {
   } // insertAfter
 
   /**
-   * Insert a new value before this node.  Returns the new node.
+   * Insert a new value before this node.
+   *
+   * @param val
+   *   The value to insert.
+   * @return
+   *   The newly created node that contains the value.
    */
-  Node2<T> insertBefore(T value) {
-    Node2<T> tmp = new Node2<T>(this.prev, value, this);
+  Node2<T> insertBefore(T val) {
+    Node2<T> tmp = new Node2<T>(this.prev, val, this);
     if (this.prev != null) {
       this.prev.next = tmp;
     } // if
@@ -93,10 +129,10 @@ public class Node2<T> {
   void remove() {
     if (this.prev != null) {
       this.prev.next = this.next;
-    }
+    } // if
     if (this.next != null) {
       this.next.prev = this.prev;
-    }
+    } // if
     this.prev = null;
     this.next = null;
   } // remove()
