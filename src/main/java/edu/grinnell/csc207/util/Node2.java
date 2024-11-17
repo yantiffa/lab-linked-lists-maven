@@ -138,3 +138,4 @@ public class Node2<T> {
   } // remove()
 
 } // Node2<T>
+
